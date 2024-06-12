@@ -19,18 +19,10 @@ public class AsteroidService {
     private String apiKey;
     @Value("${nasa.api.url}")
     private String apiUrl;
-
-    //private final RestTemplate restTemplateVar;
-
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-    /*
-    public AsteroidService(RestTemplate restTemplate) {
-        this.restTemplateVar = restTemplate;
-    }
-    */
     public List<AsteroidPath> getAsteroidPaths(String asteroidId, LocalDate fromDate, LocalDate toDate) {
         String url = String.format("%s%s?api_key=%s", apiUrl, asteroidId, apiKey);
         NasaApiResponse response = this.restTemplate().getForObject(url, NasaApiResponse.class);
@@ -40,15 +32,6 @@ public class AsteroidService {
         }
 
         List<AsteroidPath> paths = new ArrayList<>();
-        Map<String, LocalDate> lastDateByFromPlanet = new HashMap<>();
-        Map<String, LocalDate> lastDateByToPlanet = new HashMap<>();
-
-        Map<LocalDate, String> lastPlanetByFromDate = new HashMap<>();
-        Map<LocalDate, String> lastPlanetByToDate = new HashMap<>();
-
-        boolean fromPlanet = false;
-        boolean toPlanet = false;
-
         var dati = response.getCloseApproachData().stream().
                 sorted(Comparator.comparing(CloseApproachData::getCloseApproachDate)).collect(Collectors.toList());
 
@@ -71,7 +54,7 @@ public class AsteroidService {
             } else if (fromCADate!=null && toCADate==null) {
                 toCADate = date;
             } else {
-
+                // TODO to be verify
             }
 
             String planet = data.getOrbitingBody();
@@ -81,7 +64,7 @@ public class AsteroidService {
             } else if (fromCAPlanet!=null && toCAPlanet==null) {
                 toCAPlanet = planet;
             } else {
-
+            // TODO .... to be verify
             }
 
 
@@ -95,43 +78,6 @@ public class AsteroidService {
                     toCAPlanet=null;
                 }
             }
-
-            /*
-            String planet = data.getOrbitingBody();
-            if (!lastDateByFromPlanet.containsKey(planet)) {
-                lastDateByFromPlanet.put(planet, date);
-            } else {
-                paths.add(new AsteroidPath(lastDateByFromPlanet.get(planet), date, planet));
-                lastDateByFromPlanet.put(planet, date);
-            }
-             */
-            /*
-            String typeInsert = (fromPlanet==false ? "fromPlanet":"toPlanet");
-            String planet = data.getOrbitingBody();
-            switch(typeInsert) {
-                case "fromPlanet":
-                    if (!lastDateByFromPlanet.containsKey(planet)) {
-                        lastDateByFromPlanet.put(planet, date);
-                        lastPlanetByFromDate.put(date,planet);
-                        fromPlanet=true;
-                    }
-                case "toPlanet":
-                    planet = data.getOrbitingBody();
-                    if (!lastDateByToPlanet.containsKey(planet)) {
-                        lastDateByToPlanet.put(planet, date);
-                        lastPlanetByToDate.put(date, planet);
-                        fromPlanet=false;
-                    }
-            }
-
-            // oppure entrambi flag from e to plant a true
-            if(!lastDateByFromPlanet.isEmpty() && !lastDateByToPlanet.isEmpty() ){
-                paths.add(new AsteroidPath(lastDateByFromPlanet.get(planet), lastDateByToPlanet.get(planet),lastPlanetByFromDate.get(lastDateByFromPlanet.get(planet)), lastPlanetByToDate.get(lastDateByToPlanet.get(planet))));
-                lastDateByFromPlanet.put(planet, date);
-                lastDateByToPlanet.put(planet, date);
-            }
-            */
-
         }
 
         return paths;
