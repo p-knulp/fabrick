@@ -47,7 +47,7 @@ public class AsteroidService {
         }
 
         List<AsteroidPath> paths = new ArrayList<>();
-        // ci si assicura il sort asc dei risultati recuperati dal endpoint espost dalla NASA
+        // ci si assicura il sort asc della getCloseApproachDate dei risultati recuperati dal endpoint esposti dalla NASA
         var dataList = response.getCloseApproachData().stream().
                 sorted(Comparator.comparing(CloseApproachData::getCloseApproachDate)).collect(Collectors.toList());
 
@@ -79,7 +79,7 @@ public class AsteroidService {
             } else if (fromCAPlanet!=null && toCAPlanet==null) {
                 toCAPlanet = planet;
             } else {
-            // TODO .... da verificare se necesssita logica
+                // TODO .... da verificare se necesssita logica questa parte in fase di test
             }
 
             // se le quattro varibili sono valorizzate procede con l'if successivo
