@@ -57,8 +57,8 @@ public class AsteroidService {
         String fromCAPlanet=null;
         String toCAPlanet=null;
 
+        //  iterazione sui dati in response dall'endpoint della nasa
         for (var data : dataList ) {
-
             LocalDate date = LocalDate.parse(data.getCloseApproachDate(), DateTimeFormatter.ISO_DATE);
             if (date.isBefore(fromDate) || date.isAfter(toDate)) {
                 continue;
