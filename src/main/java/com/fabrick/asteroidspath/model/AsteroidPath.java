@@ -1,9 +1,10 @@
 package com.fabrick.asteroidspath.model;
 
-import lombok.*;
+//import lombok.*;
 
 import java.time.LocalDate;
 
+// per il momemento commentata la parte lombok
 /*
 @Getter
 @Setter
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 */
+
 public class AsteroidPath {
     private LocalDate fromDate;
     private LocalDate toDate;
