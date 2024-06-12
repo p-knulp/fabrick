@@ -3,6 +3,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * Classe di "mappatura" dei dati di response
+ */
 public class NasaApiResponse {
     @JsonProperty("close_approach_data")
     private List<CloseApproachData> closeApproachData;

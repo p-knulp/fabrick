@@ -12,7 +12,7 @@
 	<artifactId>asteroidspath</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>asteroidspath</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Asteroids Path Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
