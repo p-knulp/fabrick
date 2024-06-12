@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AsteroidspathApplication {
 
 	public static void main(String[] args) {
+		System.out.println("--> start del servizio asteroids che esopone ed point d'interrogazione <--");
 		SpringApplication.run(AsteroidspathApplication.class, args);
 	}
 
