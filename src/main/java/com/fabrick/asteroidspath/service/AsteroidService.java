@@ -27,6 +27,15 @@ public class AsteroidService {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+    /**
+     * Metodo preposto ad eseguire il servizio di chiamata all'endpoint della nasa ed eseguire la parte di elaborazione output.
+     * <p></p>
+     * @param asteroidId id dell'asteroide SPK-ID
+     * @param fromDate dalla data
+     * @param toDate alla data
+     * @return
+     */
     public List<AsteroidPath> getAsteroidPaths(String asteroidId, LocalDate fromDate, LocalDate toDate) {
         String url = String.format("%s%s?api_key=%s", apiUrl, asteroidId, apiKey);
         // esegue chiamata rest alla nasa link e key deno nel file di properties
@@ -90,5 +99,4 @@ public class AsteroidService {
         }
         return paths;
     }
-
 }
