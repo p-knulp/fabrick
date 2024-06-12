@@ -39,6 +39,7 @@ public class AsteroidService {
     public List<AsteroidPath> getAsteroidPaths(String asteroidId, LocalDate fromDate, LocalDate toDate) {
         String url = String.format("%s%s?api_key=%s", apiUrl, asteroidId, apiKey);
         // esegue chiamata rest alla nasa link e key deno nel file di properties
+        System.out.println("-->Esegue chimata servizio rest esposto da nasa usr : " + url);
         NasaApiResponse response = this.restTemplate().getForObject(url, NasaApiResponse.class);
 
         if (response == null || response.getCloseApproachData() == null) {
@@ -57,9 +58,6 @@ public class AsteroidService {
         String toCAPlanet=null;
 
         for (var data : dataList ) {
-            // anche se barbare si lasciano le system .out
-            System.out.println("data.getCloseApproachDate() : " + data.getCloseApproachDate() );
-            System.out.println("data.getOrbitingBody() : " + data.getOrbitingBody() );
 
             LocalDate date = LocalDate.parse(data.getCloseApproachDate(), DateTimeFormatter.ISO_DATE);
             if (date.isBefore(fromDate) || date.isAfter(toDate)) {
@@ -97,6 +95,7 @@ public class AsteroidService {
                 }
             }
         }
+        System.out.println("--> ritorna la lista delle occorrenze totale num : " + paths.size());
         return paths;
     }
 }
