@@ -2,6 +2,7 @@ package com.fabrick.asteroidspath.controller;
 
 import com.fabrick.asteroidspath.model.AsteroidPath;
 import com.fabrick.asteroidspath.service.AsteroidService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/fabrick/v1.0/asteroids")
 public class AsteroidController {
-
-    private final AsteroidService asteroidService;
-
-    public AsteroidController(AsteroidService asteroidService) {
-        this.asteroidService = asteroidService;
-    }
-
+    @Autowired
+    private AsteroidService asteroidService;
     @GetMapping("/{asteroidId}/paths")
     public List<AsteroidPath> getAsteroidPaths(
             @PathVariable String asteroidId,
