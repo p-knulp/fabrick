@@ -24,7 +24,7 @@ public class AsteroidController {
             @RequestParam(value = "fromDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
             @RequestParam(value = "toDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
 
-        System.out.println("--> esegue richiesta da endpoint esposto dal medesimo servizio.");
+        System.out.println("--> Esegue richiesta da endpoint esposto dal medesimo servizio.");
         if (fromDate == null) {
             fromDate = LocalDate.now().minusYears(100);
         }

@@ -39,7 +39,7 @@ public class AsteroidService {
     public List<AsteroidPath> getAsteroidPaths(String asteroidId, LocalDate fromDate, LocalDate toDate) {
         String url = String.format("%s%s?api_key=%s", apiUrl, asteroidId, apiKey);
         // esegue chiamata rest alla nasa link e key deno nel file di properties
-        System.out.println("--> Esegue chimata servizio rest esposto da nasa usr : " + url);
+        System.out.println("--> Esegue chimata servizio rest esposto da nasa url : " + url);
         NasaApiResponse response = this.restTemplate().getForObject(url, NasaApiResponse.class);
 
         if (response == null || response.getCloseApproachData() == null) {
