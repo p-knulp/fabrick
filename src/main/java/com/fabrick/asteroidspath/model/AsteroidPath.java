@@ -4,6 +4,10 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * Classe model AteroidPath che verrà poi ritornata dal medesimo servizio rest esposto
+ * dalla medesima applicazione di test
+ */
 @Getter
 @Setter
 @NoArgsConstructor
