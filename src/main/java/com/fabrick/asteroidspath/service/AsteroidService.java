@@ -23,11 +23,11 @@ public class AsteroidService {
     private String apiKey;
     @Value("${nasa.api.url}")
     private String apiUrl;
+    // creazione bean template
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
     /**
      * Metodo preposto ad eseguire il servizio di chiamata all'endpoint della nasa ed eseguire la parte di elaborazione output.
      * <p></p>
@@ -41,7 +41,8 @@ public class AsteroidService {
         // esegue chiamata rest alla nasa link e key deno nel file di properties
         System.out.println("--> Esegue chimata servizio rest esposto da nasa url : " + url);
         NasaApiResponse response = this.restTemplate().getForObject(url, NasaApiResponse.class);
-
+        // verifica il contenuto della response se null ritorna lista vuota ( evitaimo errori a RunTime )
+        // poi si preferisce ritornare una lista vuota.
         if (response == null || response.getCloseApproachData() == null) {
             return new ArrayList<>();
         }
@@ -95,7 +96,7 @@ public class AsteroidService {
                 }
             }
         }
-        System.out.println("--> ritorna la lista delle occorrenze totale num : " + paths.size());
+        System.out.println("--> Ritorna la lista delle occorrenze totale num : " + paths.size());
         return paths;
     }
 }
