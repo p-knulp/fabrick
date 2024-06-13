@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Classe di controller per esposizione endpoint
+ * <p></p>
+ * <p>GET /api/fabrick/v1.0/asteroids/{asteroidId}/paths</p>
+ */
 @RestController
 @RequestMapping("/api/fabrick/v1.0/asteroids")
 public class AsteroidController {
     @Autowired
-    private AsteroidService asteroidService;
+    private AsteroidService asteroidService;  // asteroid service
     @GetMapping("/{asteroidId}/paths")
     public List<AsteroidPath> getAsteroidPaths(
             @PathVariable String asteroidId,
@@ -22,7 +27,7 @@ public class AsteroidController {
 
         System.out.println("--> Esegue richiesta da endpoint esposto dal medesimo servizio.");
         if (fromDate == null) {
-            fromDate = LocalDate.now().minusYears(100);
+            fromDate = LocalDate.now().minusYears(100); // -100 anni
         }
         if (toDate == null) {
             toDate = LocalDate.now();

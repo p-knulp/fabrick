@@ -7,6 +7,7 @@ import java.time.LocalDate;
 /**
  * Classe model AteroidPath che verrà poi ritornata dal medesimo servizio rest esposto
  * dalla medesima applicazione di test
+ * <p>AsteroidPath</p>
  */
 @Getter
 @Setter

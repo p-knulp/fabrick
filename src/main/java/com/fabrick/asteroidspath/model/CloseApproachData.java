@@ -7,7 +7,8 @@ import lombok.Setter;
 
 /**
  * Classe model di "mappaura" "trasporto" dati ricevuti dall'interrogazione del servizio rest.
- * applicato anche qui il lombok
+ * applicato anche qui il lombok.
+ * <p>CloseApproachData</p>
  */
 @Getter
 @Setter

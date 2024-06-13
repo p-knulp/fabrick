@@ -7,7 +7,8 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * Classe di "mappatura" dei dati di response
+ * Classe model di "mappatura" dei dati di response
+ * <p>NasaApiResponse</p>
  */
 @Getter
 @Setter

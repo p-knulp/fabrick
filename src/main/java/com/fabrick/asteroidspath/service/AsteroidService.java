@@ -15,13 +15,14 @@ import java.util.stream.Collectors;
 
 /**
  * Classe di service per la gestione della lista di output paths asteroidi.
+ * <p>AsteroidService</p>
  */
 @Service
 public class AsteroidService {
     // si prelvano i dati dal file di properties
     @Value("${nasa.api.key}")
-    private String apiKey;
-    @Value("${nasa.api.url}")
+    private String apiKey;  // nasa.api.key=DEMO_KEY
+    @Value("${nasa.api.url}") // nasa.api.url=
     private String apiUrl;
     // creazione bean template
     @Bean
@@ -30,7 +31,7 @@ public class AsteroidService {
     }
     /**
      * Metodo preposto ad eseguire il servizio di chiamata all'endpoint della nasa ed eseguire la parte di elaborazione output.
-     * <p></p>
+     * <p>getAsteroidPaths</p>
      * @param asteroidId id dell'asteroide SPK-ID
      * @param fromDate dalla data
      * @param toDate alla data
@@ -41,7 +42,7 @@ public class AsteroidService {
         // esegue chiamata rest alla nasa link e key deno nel file di properties
         System.out.println("--> Esegue chimata servizio rest esposto da nasa url : " + url);
         NasaApiResponse response = this.restTemplate().getForObject(url, NasaApiResponse.class);
-        // verifica il contenuto della response se null ritorna lista vuota ( evitaimo errori a RunTime )
+        // verifica il contenuto della response se null ritorna lista vuota ( evitiamo errori a Runtime [unchecked] )
         // poi si preferisce ritornare una lista vuota.
         if (response == null || response.getCloseApproachData() == null) {
             return new ArrayList<>();
@@ -73,6 +74,7 @@ public class AsteroidService {
                 // TODO Verificare se necessita di logicain questa parte in fase di test
             }
 
+            // Nome del pianeta
             String planet = data.getOrbitingBody();
 
             if(fromCAPlanet==null){
